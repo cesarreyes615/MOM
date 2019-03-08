@@ -18,17 +18,19 @@
 		<!-- End Google Analytics -->
 	</head>
 
-	<body>
-		<div class = "w3-container w3-teal">
+	<body style="background-color: rgb(168,219,158);">
+		<img  src="../images/logo.png" style="width: 70%; margin-top: 8% ;margin-left: 15%">
+		<div style="margin-top: 6%;">
+		<div class = "w3-container w3-light-grey" style="width: 90%; margin-left: 5%;border-radius:2em 2em 0% 0%;">
 			<h2>Sign Up</h2>
 		</div>
 		{{#if errorMessage}}<p>{{errorMessage}}</p>{{/if}}
-		<form action = "/users/signup" class = "w3-container w3-light-grey" method = "post">
+		<form action = "/users/signup" class = "w3-container w3-light-grey" method = "post" style="width: 90%; margin-left: 5%;border-radius:0% 0% 2em 2em;>
 			<input type = "name" class = "w3-input w3-border" id = "name" name = "name" placeholder = "Enter your name."/>
 			<input type = "email" class = "w3-input w3-border" id = "email" name = "email" placeholder = "Enter Email"/>
 			<input type = "password" class = "w3-input w3-border" id = "password" name = "password" placeholder = " Create Password"/>
 			<input type = "password" class = "w3-input w3-border" id = "password" name = "password" placeholder = " Confirm Password"/>
-			<input type = "submit" class = "w3-button w3-teal" id = "submit" name = "submit"/>
+			<input type = "submit" class = "w3-button" id = "submit" name = "submit" style="margin-top: 3%; width: 100%; background-color: rgb(74,160,109);color: white"/>
 			<p>Already have an account? <a href = "../login/login">Login</a></p>
 		</form>
 	</body>
