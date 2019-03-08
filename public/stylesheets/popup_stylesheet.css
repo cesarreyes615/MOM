@@ -2,7 +2,7 @@
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
-  background-color: #85bb65;
+  background-color: rgb(253,255,135);
   color: white;
   padding: 16px 20px;
   border: none;
@@ -18,7 +18,6 @@
   position: fixed;
   left: 15%;
   top: 40%;
-  border: 3px solid #f1f1f1;
   z-index: 9;
   overflow: visible;
 }
@@ -29,6 +28,7 @@
   padding: 10px;
   background-color: white;
   font-size: 2em;
+  border-radius: 1em;
 }
 
 /* Full-width input fields */
@@ -50,7 +50,7 @@
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #4CAF50;
+  background-color: rgb(74,160,109);
   color: white;
   padding: 16px 20px;
   border: none;
