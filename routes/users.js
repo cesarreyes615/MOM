@@ -13,7 +13,7 @@ var User = info.User;
 var Purchase = info.Purchase;
 
 //Home Page
-router.get('/home',ensureAuthenticated,(req,res) => res.render('home',{'purchases': req.user.purchases}));
+router.get('/home',ensureAuthenticated,(req,res) => res.render('home',{'purchases': req.user.purchases, 'income': req.user.income}));
 
 
 
@@ -103,12 +103,18 @@ router.post('/logout',(req,res) => {
 //Purchases Handle
 router.post('/home', (req,res) => {
 	var purchase = req.body.new_purchase;
-	var cost = req.body.cost;
+	var cost = parseInt(req.body.cost);
+	if(req.user.income - cost < 0){
+		req.user.income = 0;
+	}
+	else{
+		req.user.income = req.user.income - cost;
+	}
 	var currentUser = req.user;
 	var addPurchase = {'purchase_name': purchase, 'cost': cost};
 	currentUser.purchases.push(addPurchase);
 	currentUser.save();
-	res.render('home',{'purchases': req.user.purchases});
+	res.render('home',{'purchases': req.user.purchases, 'income': req.user.income});
 });
 
 router.post('/delete_purchase', (req,res) => {
@@ -121,7 +127,7 @@ router.post('/delete_purchase', (req,res) => {
 		}
 	}
 	currentUser.save();
-	res.render('home',{'purchases': req.user.purchases});
+	res.render('home',{'purchases': req.user.purchases, 'income': req.user.income});
 });
 
 module.exports = router;

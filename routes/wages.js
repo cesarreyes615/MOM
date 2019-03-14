@@ -13,7 +13,13 @@ router.get('/wages',ensureAuthenticated, function(req, res, next) {
 router.post('/addExpenditure',(req,res) => {
 	var currentUser = req.user;
 	var expenditure = req.body.expenditure_name;
-	var cost = req.body.cost;
+	var cost = parseInt(req.body.cost);
+	if(currentUser.income - cost < 0){
+		currentUser.income = 0;
+	}
+	else{
+		currentUser.income = currentUser.income - cost;
+	}
 	var newExpenditure = {'expenditure_name': expenditure,'cost': cost};
 	currentUser.expenditures.push(newExpenditure);
 	currentUser.save();
@@ -21,7 +27,6 @@ router.post('/addExpenditure',(req,res) => {
 });
 
 router.post('/deleteExpenditure', (req,res) => {
-	console.log(req.body.id);
 	var currentUser = req.user;
 	for(var index = 0; index < currentUser.expenditures.length; index++){
 		if(currentUser.expenditures[index].id === req.body.id){
@@ -30,6 +35,13 @@ router.post('/deleteExpenditure', (req,res) => {
 		}
 	}
 	currentUser.save();
+	res.render('wages',{'expenditures': req.user.expenditures});
+});
+
+router.post('/setIncome', (req,res) => {
+	var income = parseInt(req.body.income);
+	req.user.income = income;
+	req.user.save();
 	res.render('wages',{'expenditures': req.user.expenditures});
 });
 

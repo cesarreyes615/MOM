@@ -26,11 +26,15 @@ var userSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	purchases:[{purchase_name: String, cost: String
+	income:{
+		type: Number,
+		default: 0
+	},
+	purchases:[{purchase_name: String, cost: Number
 	}],
-	expenditures:[{expenditure_name: String, cost: String
+	expenditures:[{expenditure_name: String, cost: Number
 	}],
-	savings:[{savings_goal: String, cost: String, deadline: String
+	savings:[{savings_goal: String, cost: Number, deadline: String
 	}]
 });
 
